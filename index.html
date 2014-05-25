@@ -314,6 +314,82 @@ async function g(): Awaitable&lt;string&gt; {
                     </section>
                 </section>
 
+                <!-- hack modes -->
+                <section>
+                    <section>
+                        <h2>Hack Modes</h2>
+
+                        <p>
+                            Hack has various levels of tolerance for it's type checker. These are known as modes, and they are triggered by comments.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Strict mode</h3>
+
+                        <p>
+                            For the pure of heart. Everything must be annotated and everything is type checked. Strict code cannot call into non hack code.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... a strict example</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh //strict
+class TestCase
+{
+    public function __construct(protected string $name)
+    {
+    }
+
+    public function setUp(): void
+    {
+    }
+
+    public function expect&lt;T&gt;(T $context): Expectation&lt;T&gt;
+    {
+        return new Expectation($context);
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>... strict continued</h3>
+
+                        <p>
+                            It is worth noting that top level code cannot exist in strict mode. This makes it impossible to execute a purely strict program (there is no "main" method). Partial or UNSAFE must be used as strict entry points.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>A note on hhi interfaces</h3>
+                        <p>
+                            Strict mode will throw "Unbound name" errors when it can't find a corresponding type (including functions). Out of the box, this also includes native PHP functions! You can imagine how frustrating this would be everytime you reach for your favorite PHP function.
+                        </p>
+
+                        <p>
+                            <br><a href="https://github.com/facebook/hhvm/pull/2656">https://github.com/facebook/hhvm/pull/2656</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... hhi interfaces continued</h3>
+                        <p>
+                            hhi files contain interfaces for most of the PHP core library. These files basically provide type information to hack's type checker. You only have to make sure they are on the path of the type checker. After install, these are found at <code>/usr/share/hhvm/hack/hhi</code>. Just copy them to your project's directory and you should be good.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>An example hhi</h3>
+
+                        <img src="img/hhi-example.png" alt="example of hhi interface" />
+                    </section>
+                </section>
+
             </div>
 
         </div>
