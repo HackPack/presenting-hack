@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Brian Scaturro - Presenting Hack</title>
+
+        <meta name="description" content="An overview of Facebook's new programming language: Hack">
+        <meta name="author" content="Brian Scaturro">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <!-- Title slide -->
+                <section>
+                    <h1>The Hack Programming Language</h1>
+                    <h3>A better way to PHP</h3>
+                    <p>
+                        <small>By <a href="http://brianscaturro.com">Brian Scaturro</a> / <a href="https://twitter.com/scaturr">@scaturr</a></small>
+                    </p>
+                </section>
+
+                <!-- Hack quote -->
+                <section>
+                    <img class="no-border" alt="hack logo" src="img/hack.jpeg" />
+
+                    <blockquote>
+                        Hack is a language for HHVM that interoperates seamlessly with PHP. The goal of Hack is to offer developers a way to write cleaner, safer and refactorable code while trying to maintain a level of compatibility with current PHP codebases.
+                    </blockquote>
+
+                    <p>
+                        <br><a href="http://docs.hhvm.com/manual/en/hack.intro.whatis.php">http://docs.hhvm.com/manual/en/hack.intro.whatis.php</a>
+                    </p>
+                </section>
+                
+                <!-- Current hack projects -->
+                <section>
+                    <h2>Current hack things in the works:</h2>
+                    <h3>i.e - how I know things about hack</h3>
+                    <ul>
+                        <li><a href="https://github.com/HackPack/HackUnit">HackUnit</a> - xUnit for hack</li>
+                        <li><a href="https://github.com/HackPack/hacktions">hacktions</a> - Event library for hack</li>
+                        <li><a href="https://github.com/HackPack/hacktions">hackqueue</a> - Socket based job queue for hack</li>
+                    </ul>
+                </section>
+
+                <!-- The Type Checker -->
+                <section>
+
+                    <section>
+                        <h2>The Type Checker</h2>
+                        <h4>The real value of hack</h4>
+                        
+                        <img alt="No errors!" src="img/type-checker-no-errors.png" />
+                    </section>
+
+                    <section>
+                        <h3>Catch those type errors early</h3>
+
+                        <img src="img/type-checker-errors.png" alt="hack type errors" />
+                    </section>
+
+                    <section>
+                        <h3>... even while coding</h3>
+
+                        <img src="img/vim-type-checker.png" alt="type checker in vim" />
+                    </section>
+
+                    <section>
+                        <h3>Tough type checker</h3>
+
+                        <p>
+                            The type checker is your best line of defense. However, the runtime will allow things the type checker does not approve of.
+                        </p>
+
+                        <img src="img/no-references.png" alt="Dont use references" />
+                    </section>
+
+                    <section>
+                        <h3>... forgiving runtime</h3>
+
+                        <img class="no-border" src="img/use-references.png" alt="runtime allows references" /> 
+
+                        <img  class="no-border" src="img/use-references-output.png" alt="output of reference use" />
+                    </section>
+
+                </section>
+                
+                <!-- Type annotation -->
+                <section>
+
+                    <section>
+                        <h2>Type Annotations</h2>
+
+                        <blockquote>
+                            Type annotations allow for PHP code to be explicitly typed on parameters, class member variables and return values (types are inferred for locals). These annotated types are checked via a type checker.
+                        </blockquote>
+
+                        <p>
+                            <br><a href="http://docs.hhvm.com/manual/en/hack.annotations.php">http://docs.hhvm.com/manual/en/hack.annotations.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Typed parameters and return types</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh //strict
+
+function sum(int x, int y): int {
+    return x + y;
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>Typed class members</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh //strict
+
+class TestResult
+{
+    protected int $runCount;
+
+    protected array&lt;Failure&gt; $failures;
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>Annotating closures</h3>
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh //strict
+
+function invoke((function(int $x): int) $fn): int {
+    return $fn(1);
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>Annotation with $this</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh //strict
+
+class FluentObject
+{
+    public function doThing(): this
+    {
+        //do something
+        return $this;
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>... needs a little work yet</h3>
+
+                        <img src="img/busted-this-annotation.png" alt="this annotation doesnt work so well yet" />
+
+                        <p>
+                            <a href="https://github.com/HackPack/HackUnit/blob/bug-broken-this-annotation/Runner/Options.php">https://github.com/HackPack/HackUnit/blob/bug-broken-this-annotation/Runner/Options.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... can workaround pretty easily for now</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh //strict
+namespace HackPack\HackUnit\Runner;
+
+class Options
+{
+    protected string $testPath;
+
+    /**
+     * Use Options type since "this" annotation is broken
+     * when namespaces are used
+     */
+    public function setTestPath(string $testPath): Options
+    {
+        $this->testPath;
+        return $this;
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>The mixed type</h3>
+
+                        <p>
+                            The hack type checker has some pretty interesting ways of handling the "mixed" type that many PHP programmers are familiar with. The type checker will give you a pass on it if it sees you are validating the type.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... has to be checked</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh
+
+function sum(mixed $x): void {
+  if (is_array($x) || $x instanceof Vector) {
+    $s = 0;
+    foreach ($x as $v) {
+      $s += $v;
+    }
+    return $s;
+  }
+  //... do something else or throw an exception...
+}
+                            </code>
+                        </pre>
+
+                        <p>
+                            <a href="http://docs.hhvm.com/manual/en/hack.annotations.mixedtypes.php">http://docs.hhvm.com/manual/en/hack.annotations.mixedtypes.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Annotating generators and coroutines</h3>
+
+                        <p>
+                            PHP 5.5 introduced some features that programmers in other languages have been enjoying for years: generators and coroutines. Hack has given types to both of these.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Annotating generators</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh //strict
+
+function infiniteIterator(): Continuation&lt;int&gt; {
+    $i = 0;
+    while (true) {
+        yield ++$i;
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>Annotating coroutines</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh
+async function f(): Awaitable&lt;int&gt; {
+  return 42;
+}
+
+async function g(): Awaitable&lt;string&gt; {
+  $f = await f();
+  $f++;
+  return 'hi test ' . $f;
+}
+                            </code>
+                        </pre>
+
+                        <p>
+                            <a href="http://docs.hhvm.com/manual/en/hack.annotations.generators.php">http://docs.hhvm.com/manual/en/hack.annotations.generators.php</a>
+                        </p>
+                    </section>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
