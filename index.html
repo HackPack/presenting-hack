@@ -1134,6 +1134,80 @@ class TestResult
 
                         <p><br><a href="http://bit.ly/1piowdZ">http://bit.ly/1piowdZ</a></p>
                     </section>
+
+                    <!-- other hack features -->
+                    <section>
+                        <section>
+                            <h2>Other Hack Rules And Features</h2>
+
+                            <p>
+                                Hack has some other <a href="http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.php">rules and features</a>, but here are some
+                                of the more relevant ones.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>Variable number of arguments</h3>
+
+                            <blockquote>
+                                Hack provides the capability to indicate that a function takes a variable number of arguments. This is done using ... (three dots).
+                            </blockquote>
+
+                            <p><br><a href="http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.varargs.php">http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.varargs.php</a></p>
+                        </section>
+
+                        <section>
+                            <h3>... an example</h3>
+
+                            <p><br><a href="http://bit.ly/SPEor0">http://bit.ly/SPEor0</a></p>
+                        </section>
+
+                        <section>
+                            <h3>Callbacks and function fun()</h3>
+
+                            <blockquote>
+                                In order to make these type of callbacks type-checkable and type-safe, Hack has introduced function fun(). function fun() is a special function used to create a "pointer" to a function in a type-safe way. function fun() takes a string corresponding to the name of the function to be called. It returns a "type-safe" string that can be used in, for example, call_user_func()
+                            </blockquote>
+
+                            <p>
+                                <br>
+                                <a href="http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.callbacks.php">http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.callbacks.php</a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>fun and family</h3>
+
+                            <p>
+                                There are a few variants of <a href="http://docs.hhvm.com/manual/en/function.hack.fun.php">fun</a>:
+                            </p>
+
+                            <ul>
+                                <li>function <a href="http://docs.hhvm.com/manual/en/function.hack.class_meth.php">class_meth()</a> - Creates a callable to call a static method</li>
+                                <li>function <a href="http://docs.hhvm.com/manual/en/function.hack.inst_meth.php">inst_meth()</a> - Creates a callable to call an instance method on a specific object</li>
+                                <li>function <a href="http://docs.hhvm.com/manual/en/function.hack.meth_caller.php">meth_caller()</a> - Creates a callable to call an instance method on any object</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3>... examples</h3>
+
+                            <pre>
+                                <code class="php" contenteditable data-trim>
+$factory = class_meth('\HackPack\HackUnit\Runner\Loading\StandardLoader', 'create');
+
+$update = inst_meth($observer, 'update');                                    
+                                </code>
+                            </pre>
+
+                            <p>
+                                <br>
+                                <a href="https://github.com/HackPack/HackUnit/blob/master/UI/Console.php">https://github.com/HackPack/HackUnit/blob/master/UI/Console.php</a>
+                                <br>
+                                <a href="https://github.com/HackPack/hacktions/blob/master/Subject.php">https://github.com/HackPack/hacktions/blob/master/Subject.php</a>
+                            </p>
+                        </section>
+                    </section>
             </div>
 
         </div>
