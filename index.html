@@ -601,6 +601,254 @@ class Cook
 
                 </section>
 
+                <!-- Nullable types -->
+                <section>
+                    
+                    <section>
+                        <h2>Nullable Types</h2>
+
+                        <blockquote>
+                            Hack introduces a safer way to deal with nulls through a concept known as the "Nullable" type. Nullable allows any type to have null assigned and checked on it. 
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.nullable.php">http://docs.hhvm.com/manual/en/hack.nullable.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Be explicit about the possibility of null</h3>
+
+                        <pre>
+                            <code contenteditable data-trim class="php">
+&lt;?hh //strict
+class Options
+{
+    protected ?string $hackUnitFile;
+
+    public function getHackUnitFile(): ?string
+    {
+        $path = (string) getcwd() . '/Hackunit.php';
+        if (! is_null($this->hackUnitFile)) {
+            $path = $this->hackUnitFile;
+        }
+        $path = realpath($path);
+        return $path ?: null;
+    }
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>... be sure to check nulls</h3>
+
+                        <p>
+                            The following results in a type error:
+                        </p>
+
+                        <pre>
+                            <code class="php" data-trim contenteditable>
+&lt;?hh //strict
+class TestResult
+{
+    protected ?float $startTime;
+
+    public function getTime(): ?float
+    {
+        $time = null;
+        $startTime = $this->startTime;
+        $time = microtime(true) - $startTime;
+        return $time;
+    }
+
+    //TestResult.php|39 col 35 error|  Typing error
+    //TestResult.php|39 col 35 error|  This is a num (int/float) because this is used in an arithmetic operation
+    //TestResult.php|13 col 15 error|  It is incompatible with a nullable type
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h3>... the following is ok</h3>
+
+                        <pre>
+                            <code class="php" contenteditable data-trim>
+&lt;?hh //strict
+class TestResult
+{
+    public function getTime(): ?float
+    {
+        $time = null;
+        $startTime = $this->startTime;
+        if (!is_null($startTime)) {
+            $time = microtime(true) - $startTime;
+        }
+        return $time;
+    }
+}
+                            </code>
+                        </pre>
+                        <p>
+                            <br>
+                            <a href="http://bit.ly/1piowdZ">http://bit.ly/1piowdZ</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Summary</h3>
+
+                        <p>
+                            Nullable allows you to be explicit about the possibility of null. This makes code more readable and easier to reason about.
+                        </p>
+                    </section>
+
+                </section>
+
+                <!-- collections -->
+                <section>
+                    <section>
+                        <h2>Collections</h2>
+                        <p>
+                            The goals of Hack collections are four-fold:
+                        </p>
+                        <ol>
+                            <li>Provide a unified collections framework that is simple and intuitive.</li>
+                            <li>Provide equal or better performance than the equivalent PHP array pattern.</li>
+                            <li>Provide a collection implementation that allows for optional static typing, integrating seamlessly with Hack.
+
+</li>
+                            <li>Provide an easy migration path to this framework by building on top of standard functionality from PHP5.</li>
+                        </ol>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.collections.goals.php">http://docs.hhvm.com/manual/en/hack.collections.goals.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Vectors</h3>
+
+                        <blockquote>
+                            A Vector is an integer-indexed (zero-based) collection with similar semantics to a C++ vector or a C#/Java ArrayList. Random access to elements happen in O(1) time. Inserts occur at O(1) when added to the end, but could hit O(n) with inserts elsewhere. Removal has similar time semantics. 
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.collections.vector.php">http://docs.hhvm.com/manual/en/hack.collections.vector.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... an example</h3>
+
+                        <p>
+                            <a href="https://github.com/HackPack/hacktions/blob/master/Subject.php">https://github.com/HackPack/hacktions/blob/master/Subject.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Maps</h3>
+
+                        <blockquote>
+                            A Map is an ordered dictionary-style collection. Elements are stored as key/value pairs. Maps retain element insertion order, meaning that iterating over a Map will visit the elements in the same order that they were inserted. Insert, remove and search operations are performed in O(lg n) time or better
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.collections.map.php">http://docs.hhvm.com/manual/en/hack.collections.map.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... an example</h3>
+
+                        <p>
+                            <br>
+                            <a href="https://github.com/HackPack/hacktions/blob/master/EventEmitter.php">https://github.com/HackPack/hacktions/blob/master/EventEmitter.php</a>
+                        </p>
+
+                        <p>
+                            Note: Maps only support integer and string keys for now.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Sets</h3>
+
+                        <blockquote>
+                            A Set is an ordered collection that stores unique values. Unlike vectors and maps, sets do not have keys, and thus cannot be iterated on keys.
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.collections.set.php">http://docs.hhvm.com/manual/en/hack.collections.set.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... an example</h3>
+
+                        <p>
+                            <br>
+                            <a href="http://bit.ly/1ntUqVg">http://bit.ly/1ntUqVg</a>
+                        </p>
+
+                        <p>
+                            Note: Sets only support integer and string values for now.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Pairs</h3>
+
+                        <blockquote>
+                            A Pair is an indexed container restricted to containing exactly two elements. Pair has integer keys; key 0 refers to the first element and key 1 refers to the second element (all other integer keys are out of bounds). 
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.collections.pair.php">http://docs.hhvm.com/manual/en/hack.collections.pair.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... an example</h3>
+
+                        <p>
+                            <br>
+                            <a href="http://bit.ly/1k08Rhs">http://bit.ly/1k08Rhs</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>A note on immutable collections</h3>
+
+                        <p>
+                            Most hack collections have immutable variants - i.e <code>ImmVector</code>. Immutable variants function like their mutable counterparts with the exception that items cannot be added or removed.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>A note on arrays</h3>
+
+                        <p>
+                            Collections are now the preferred method of storing things. Arrays are still allowed, but they must be used in a new way to conform to the type checker.
+                        </p>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.arrays.php">http://docs.hhvm.com/manual/en/hack.arrays.php</a>
+                        </p>
+                    </section>
+
+                    <!-- shapes -->
+
+                </section>
+
             </div>
 
         </div>
