@@ -1063,6 +1063,39 @@ $this-&gt;runner->&gt;on('testFailed', function(...) use ($ui) {
                             </pre>
                         </section>
                     </section>
+
+                    <!-- tuples -->
+                    <section>
+                        <section>
+                            <h2>Tuples</h2>
+
+                            <blockquote>
+                                Hack has a basic implementation for tuples. A tuple is, for all intents and purposes, an immutable array. With a PHP array, elements can be added and removed at will. With a tuple, after initialization, elements cannot be added to or removed from the tuple. 
+                            </blockquote>
+
+                            <p>
+                                <br>
+                                <a href="http://docs.hhvm.com/manual/en/hack.tuples.php">http://docs.hhvm.com/manual/en/hack.tuples.php</a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>Type annotating with tuples</h3>
+
+                            <pre>
+                                <code class="php" contenteditable data-trim>
+function returns_tuple(): (int, string, bool) {
+    return tuple(1, "two", true);
+}
+
+class UsesTuples
+{
+    protected Vector&lt;(int, string)&gt; $vectorOfIntAndStringTuples;
+}
+                                </code>
+                            </pre>
+                        </section>
+                    </section>
             </div>
 
         </div>
