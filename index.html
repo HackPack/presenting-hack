@@ -997,6 +997,72 @@ function read(openfile $file): string {
                             </p>
                         </section>
                     </section>
+
+                    <!-- lambdas -->
+                    <section>
+                        <section>
+                            <h2>Lambdas</h2>
+
+                            <blockquote>
+                                To address the shortcomings of PHP closures, HHVM introduced a "lambda expression" feature. Lambda expressions offer similar functionality to PHP closures, but they capture variables from the enclosing function body implicitly and are less verbose in general.
+                            </blockquote>
+
+                            <p>
+                                <br>
+                                <a href="http://docs.hhvm.com/manual/en/hack.lambda.php">http://docs.hhvm.com/manual/en/hack.lambda.php</a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>So fresh and so clean</h3>
+
+                            <p>
+                                Lambdas make event driven code gorgeous.
+                            </p>
+
+                            <pre>
+                                <code class="php" contenteditable data-trim>
+$ui = new Text();
+$this-&gt;runner-&gt;on('testFailed', (...) ==&gt; $ui-&gt;printFeedback("\033[41;37mF\033[0m"));
+$this-&gt;runner-&gt;on('testPassed', (...) ==&gt; $ui-&gt;printFeedback('.'));
+                                </code>
+                            </pre>
+
+                            <p><br><a href="https://github.com/HackPack/HackUnit/blob/master/UI/Console.php">https://github.com/HackPack/HackUnit/blob/master/UI/Console.php</a></p>
+                        </section>
+
+                        <section>
+                            <h3>Higher order functions are actually pleasant to look at</h3>
+
+                            <pre>
+                                <code class="php" contenteditable data-trim>
+$squared = array_map($x ==&gt; $x*$x, array(1,2,3));
+                                </code>
+                            </pre>
+
+                            <p><br><a href="http://docs.hhvm.com/manual/en/hack.lambda.examples.php">http://docs.hhvm.com/manual/en/hack.lambda.examples.php</a></p>
+                        </section>
+
+                        <section>
+                            <h3>A huge victory</h3>
+
+                            <p>
+                                This may seem like a small addition, but it is probably one of the coolest features of Hack.
+                            </p>
+
+                            <pre>
+                                <code class="php" contenteditable data-trim>
+$ui = new Text();
+
+$this-&gt;runner-&gt;on('testFailed', (...) ==&gt; $ui->printFeedback("\033[41;37mF\033[0m"));
+//vs
+$this-&gt;runner->&gt;on('testFailed', function(...) use ($ui) {
+   $ui->printFeedback("\033[41;37mF\033[0m";)
+});
+                                </code>
+                            </pre>
+                        </section>
+                    </section>
             </div>
 
         </div>
