@@ -845,10 +845,117 @@ class TestResult
                         </p>
                     </section>
 
-                    <!-- shapes -->
-
                 </section>
 
+                <!-- shapes -->
+                    <section>
+                        <section>
+                            <h2>Shapes</h2>
+
+                            <blockquote>
+                                Since PHP does not have the concept of a structs or records, arrays are many times used to mimic a struct or record-like entity . Arrays are also used as "argument bags" to hold a bunch of arguments that will be passed to a function or method. Shapes were created to bring some structure (no pun intended) and type-checking sanity to this use case.
+                            </blockquote>
+
+                            <p>
+                                <br>
+                                <a href="http://docs.hhvm.com/manual/en/hack.shapes.php">http://docs.hhvm.com/manual/en/hack.shapes.php</a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>... an example</h3>
+
+                            <p>
+                                <br>
+                                <a href="https://github.com/HackPack/HackUnit/blob/master/Error/TraceParser.php">https://github.com/HackPack/HackUnit/blob/master/Error/TraceParser.php</a>
+                            </p>
+                        </section>
+                    </section>
+
+                    <!-- type aliasing -->
+                    <section>
+                        <section>
+                            <h2>Type Aliasing</h2>
+
+                            <blockquote>
+                                Many programming languages allow existing types to be redefined as new type names. The C language has typedefs. OCaml has type abbreviations. PHP even has rudimentary mechanism with its function class_alias() function.
+
+                                Hack and HHVM are offering two ways to redefine type names: type aliasing and opaque type aliasing.
+                            </blockquote>
+
+                            <p>
+                                <br>
+                                <a href="http://docs.hhvm.com/manual/en/hack.typealiasing.php">http://docs.hhvm.com/manual/en/hack.typealiasing.php</a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>Type aliasing</h3>
+
+                            <pre>
+                                <code contenteditable data-trim class="php">
+&lt;?hh //strict
+type Origin = shape(
+    'method' => string,
+    'message' => string,
+    'location' => string
+);
+                                </code>
+                            </pre>
+
+                            <p>
+                                <br>
+                                <a href="http://bit.ly/1tOkPwd">http://bit.ly/1tOkPwd</a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>Opaque type aliasing</h3>
+
+                            <pre>
+                                <code class="php" contenteditable data-trim>
+&lt;?hh //strict
+newtype Location = shape(
+    'file' => string,
+    'line' => int
+);
+                                </code>
+                            </pre>
+
+                            <p>
+                                Opaque type aliases work like their non-opaque counterpart with the exception that they cannot escape the confines of the file they were defined in.
+                                <br>
+                                <a href="http://bit.ly/1mDUWwj">http://bit.ly/1mDUWwj</a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>Mimic linear types with aliases</h3>
+
+                            <pre>
+                                <code class="php" contenteditable data-trim>
+&lt;?hh
+newtype closedfile = resource;
+newtype openfile = resource;
+
+function get_file_handler(string $filename): closedfile {
+  return some_wrapped_function($filename);
+}
+
+function open_file_handler(closedfile $file): openfile {
+  $file->open();
+  return $file;
+}
+
+function read(openfile $file): string {
+  return $file->read();
+}                                    
+                                </code>
+                            </pre>
+
+                            <p><br><a href="http://bit.ly/1irg6cD">http://bit.ly/1irg6cD</a></p>
+                        </section>
+                    </section>
             </div>
 
         </div>
