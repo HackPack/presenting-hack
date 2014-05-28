@@ -54,25 +54,25 @@
 
                 <!-- Hack quote -->
                 <section>
-                    <img class="no-border" alt="hack logo" src="img/hack.jpeg" />
+                    <img class="no-border" alt="Hack logo" src="img/Hack.jpeg" />
 
                     <blockquote>
                         Hack is a language for HHVM that interoperates seamlessly with PHP. The goal of Hack is to offer developers a way to write cleaner, safer and refactorable code while trying to maintain a level of compatibility with current PHP codebases.
                     </blockquote>
 
                     <p>
-                        <br><a href="http://docs.hhvm.com/manual/en/hack.intro.whatis.php">http://docs.hhvm.com/manual/en/hack.intro.whatis.php</a>
+                        <br><a href="http://docs.hhvm.com/manual/en/Hack.intro.whatis.php">http://docs.hhvm.com/manual/en/Hack.intro.whatis.php</a>
                     </p>
                 </section>
                 
-                <!-- Current hack projects -->
+                <!-- Current Hack projects -->
                 <section>
-                    <h2>Current hack things in the works:</h2>
-                    <h3>i.e - how I know things about hack</h3>
+                    <h2>Current Hack things in the works:</h2>
+                    <h3>i.e - how I know things about Hack</h3>
                     <ul>
-                        <li><a href="https://github.com/HackPack/HackUnit">HackUnit</a> - xUnit for hack</li>
-                        <li><a href="https://github.com/HackPack/hacktions">hacktions</a> - Event library for hack</li>
-                        <li><a href="https://github.com/HackPack/hacktions">hackqueue</a> - Socket based job queue for hack</li>
+                        <li><a href="https://github.com/HackPack/HackUnit">HackUnit</a> - xUnit for Hack</li>
+                        <li><a href="https://github.com/HackPack/Hacktions">Hacktions</a> - Event library for Hack</li>
+                        <li><a href="https://github.com/HackPack/Hacktions">hackqueue</a> - Socket based job queue for Hack</li>
                     </ul>
                 </section>
 
@@ -81,7 +81,7 @@
 
                     <section>
                         <h2>The Type Checker</h2>
-                        <h4>The real value of hack</h4>
+                        <h4>The real value of Hack</h4>
                         
                         <img alt="No errors!" src="img/type-checker-no-errors.png" />
                     </section>
@@ -89,7 +89,7 @@
                     <section>
                         <h3>Catch those type errors early</h3>
 
-                        <img src="img/type-checker-errors.png" alt="hack type errors" />
+                        <img src="img/type-checker-errors.png" alt="Hack type errors" />
                     </section>
 
                     <section>
@@ -120,7 +120,7 @@
                         <h3>Using hh_client</h3>
 
                         <p>
-                            The type checker is invoked by using the <code>hh_client</code> executable that installs with hack. This executable is currently only available on *nix platforms.
+                            The type checker is invoked by using the <code>hh_client</code> executable that installs with Hack. This executable is currently only available on *nix platforms.
                         </p>
                     </section>
 
@@ -131,7 +131,7 @@
                             <code>hh_client</code> will search for types based on the location of a <code>.hhconfig</code> file. It is an empty file. Be sure to include this in the root of your projects.
                         </p>
 
-                        <img src="img/hhconfig.png" alt="hack project directory structure" />
+                        <img src="img/hhconfig.png" alt="Hack project directory structure" />
                     </section>
 
                 </section>
@@ -147,7 +147,7 @@
                         </blockquote>
 
                         <p>
-                            <br><a href="http://docs.hhvm.com/manual/en/hack.annotations.php">http://docs.hhvm.com/manual/en/hack.annotations.php</a>
+                            <br><a href="http://docs.hhvm.com/manual/en/Hack.annotations.php">http://docs.hhvm.com/manual/en/Hack.annotations.php</a>
                         </p>
                     </section>
 
@@ -254,7 +254,7 @@ class Options
                         <h3>The mixed type</h3>
 
                         <p>
-                            The hack type checker has some pretty interesting ways of handling the "mixed" type that many PHP programmers are familiar with. The type checker will give you a pass on it if it sees you are validating the type.
+                            The Hack type checker has some pretty interesting ways of handling the "mixed" type that many PHP programmers are familiar with. The type checker will give you a pass on it if it sees you are validating the type.
                         </p>
                     </section>
 
@@ -279,7 +279,7 @@ function sum(mixed $x): void {
                         </pre>
 
                         <p>
-                            <a href="http://docs.hhvm.com/manual/en/hack.annotations.mixedtypes.php">http://docs.hhvm.com/manual/en/hack.annotations.mixedtypes.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.annotations.mixedtypes.php">http://docs.hhvm.com/manual/en/Hack.annotations.mixedtypes.php</a>
                         </p>
                     </section>
 
@@ -327,12 +327,12 @@ async function g(): Awaitable&lt;string&gt; {
                         </pre>
 
                         <p>
-                            <a href="http://docs.hhvm.com/manual/en/hack.annotations.generators.php">http://docs.hhvm.com/manual/en/hack.annotations.generators.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.annotations.generators.php">http://docs.hhvm.com/manual/en/Hack.annotations.generators.php</a>
                         </p>
                     </section>
                 </section>
 
-                <!-- hack modes -->
+                <!-- Hack modes -->
                 <section>
                     <section>
                         <h2>Hack Modes</h2>
@@ -346,7 +346,7 @@ async function g(): Awaitable&lt;string&gt; {
                         <h3>Strict mode</h3>
 
                         <p>
-                            For the pure of heart. Everything must be annotated and everything is type checked. Strict code cannot call into non hack code.
+                            For the pure of heart. Everything must be annotated and everything is type checked. Strict code cannot call into non Hack code.
                         </p>
                     </section>
 
@@ -397,7 +397,7 @@ class TestCase
                     <section>
                         <h3>... hhi interfaces continued</h3>
                         <p>
-                            hhi files contain interfaces for most of the PHP core library. These files basically provide type information to hack's type checker. You only have to make sure they are on the path of the type checker. After install, these are found at <code>/usr/share/hhvm/hack/hhi</code>. Just copy them to your project's directory and you should be good.
+                            hhi files contain interfaces for most of the PHP core library. These files basically provide type information to Hack's type checker. You only have to make sure they are on the path of the type checker. After install, these are found at <code>/usr/share/hhvm/Hack/hhi</code>. Just copy them to your project's directory and you should be good.
                         </p>
                     </section>
 
@@ -416,7 +416,7 @@ class TestCase
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.modes.partial.php">http://docs.hhvm.com/manual/en/hack.modes.partial.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.modes.partial.php">http://docs.hhvm.com/manual/en/Hack.modes.partial.php</a>
                         </p>
                     </section>
 
@@ -429,7 +429,7 @@ class TestCase
 
                         <p>
                             <br>
-                            <a href="https://github.com/HackPack/HackUnit/blob/master/bin/hackunit">https://github.com/HackPack/HackUnit/blob/master/bin/hackunit</a>
+                            <a href="https://github.com/HackPack/HackUnit/blob/master/bin/Hackunit">https://github.com/HackPack/HackUnit/blob/master/bin/Hackunit</a>
                         </p>
                     </section>
 
@@ -437,12 +437,12 @@ class TestCase
                         <h3>Decl mode</h3>
 
                         <blockquote>
-                            Decl mode is used to allow hack code written in strict mode to call into legacy code, without having to fix the issues that would be pointed out by partial mode. The type checker will "absorb" the signatures of the code, but will not type check the code. Decl is mainly used when annotating old, existing APIs (i.e., when the code does note meet Hack's stricter subset of PHP). 
+                            Decl mode is used to allow Hack code written in strict mode to call into legacy code, without having to fix the issues that would be pointed out by partial mode. The type checker will "absorb" the signatures of the code, but will not type check the code. Decl is mainly used when annotating old, existing APIs (i.e., when the code does note meet Hack's stricter subset of PHP). 
                         </blockquote>
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.modes.decl.php">http://docs.hhvm.com/manual/en/hack.modes.decl.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.modes.decl.php">http://docs.hhvm.com/manual/en/Hack.modes.decl.php</a>
                         </p>
 
                     </section>
@@ -479,7 +479,7 @@ class TestCase
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.generics.php">http://docs.hhvm.com/manual/en/hack.generics.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.generics.php">http://docs.hhvm.com/manual/en/Hack.generics.php</a>
                         </p>
                     </section>
 
@@ -507,11 +507,11 @@ trait EventEmitter
                         <h3>... the dream is better than reality</h3>
 
                         <p>
-                            While hack generics are useful type annotations, they are nowhere near as useful as generics in Java/C#.
+                            While Hack generics are useful type annotations, they are nowhere near as useful as generics in Java/C#.
                         </p>
 
                         <p>
-                            This mainly stems from hack's preference for inference and the fact that a type is not a concrete thing in hack.
+                            This mainly stems from Hack's preference for inference and the fact that a type is not a concrete thing in Hack.
                         </p>
                     </section>
 
@@ -548,7 +548,7 @@ $this->expectCallable($fun)->toThrow('\HackPack\HackUnit\Core\ExpectationExcepti
                         </pre>
 
                         <p>
-                            This snippet also demonstrates we haven't left the "magic string" pattern of PHP. Types are not concrete things in hack - we still have to check types against strings.
+                            This snippet also demonstrates we haven't left the "magic string" pattern of PHP. Types are not concrete things in Hack - we still have to check types against strings.
                         </p>
                     </section>
 
@@ -556,7 +556,7 @@ $this->expectCallable($fun)->toThrow('\HackPack\HackUnit\Core\ExpectationExcepti
                         <h3>Generics don't stack</h3>
 
                         <p>
-                            Generics are not as useful in hack because they don't stack. What I mean by stack is explained by the following from the docs:
+                            Generics are not as useful in Hack because they don't stack. What I mean by stack is explained by the following from the docs:
                         </p>
 
                         <blockquote>                            
@@ -565,7 +565,7 @@ $this->expectCallable($fun)->toThrow('\HackPack\HackUnit\Core\ExpectationExcepti
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.generics.method.php">http://docs.hhvm.com/manual/en/hack.generics.method.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.generics.method.php">http://docs.hhvm.com/manual/en/Hack.generics.method.php</a>
                         </p>
                     </section>
 
@@ -587,7 +587,7 @@ class Cook
 
                         <p>
                             <br>
-                            <a href="https://github.com/HackPack/hacktions">https://github.com/HackPack/hacktions</a>
+                            <a href="https://github.com/HackPack/Hacktions">https://github.com/HackPack/Hacktions</a>
                         </p>
                     </section>
 
@@ -595,7 +595,7 @@ class Cook
                         <h3>Summary</h3>
 
                         <p>
-                            Generics are really useful design tools. Their presence in hack is a welcome addition that is not present in vanilla PHP. However, they are not as useful as they are in other languages.
+                            Generics are really useful design tools. Their presence in Hack is a welcome addition that is not present in vanilla PHP. However, they are not as useful as they are in other languages.
                         </p>
                     </section>
 
@@ -613,7 +613,7 @@ class Cook
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.nullable.php">http://docs.hhvm.com/manual/en/hack.nullable.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.nullable.php">http://docs.hhvm.com/manual/en/Hack.nullable.php</a>
                         </p>
                     </section>
 
@@ -625,13 +625,13 @@ class Cook
 &lt;?hh //strict
 class Options
 {
-    protected ?string $hackUnitFile;
+    protected ?string $HackUnitFile;
 
     public function getHackUnitFile(): ?string
     {
         $path = (string) getcwd() . '/Hackunit.php';
-        if (! is_null($this->hackUnitFile)) {
-            $path = $this->hackUnitFile;
+        if (! is_null($this->HackUnitFile)) {
+            $path = $this->HackUnitFile;
         }
         $path = realpath($path);
         return $path ?: null;
@@ -725,7 +725,7 @@ class TestResult
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.collections.goals.php">http://docs.hhvm.com/manual/en/hack.collections.goals.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.collections.goals.php">http://docs.hhvm.com/manual/en/Hack.collections.goals.php</a>
                         </p>
                     </section>
 
@@ -738,7 +738,7 @@ class TestResult
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.collections.vector.php">http://docs.hhvm.com/manual/en/hack.collections.vector.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.collections.vector.php">http://docs.hhvm.com/manual/en/Hack.collections.vector.php</a>
                         </p>
                     </section>
 
@@ -746,7 +746,7 @@ class TestResult
                         <h3>... an example</h3>
 
                         <p>
-                            <a href="https://github.com/HackPack/hacktions/blob/master/Subject.php">https://github.com/HackPack/hacktions/blob/master/Subject.php</a>
+                            <a href="https://github.com/HackPack/Hacktions/blob/master/Subject.php">https://github.com/HackPack/Hacktions/blob/master/Subject.php</a>
                         </p>
                     </section>
 
@@ -759,7 +759,7 @@ class TestResult
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.collections.map.php">http://docs.hhvm.com/manual/en/hack.collections.map.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.collections.map.php">http://docs.hhvm.com/manual/en/Hack.collections.map.php</a>
                         </p>
                     </section>
 
@@ -768,7 +768,7 @@ class TestResult
 
                         <p>
                             <br>
-                            <a href="https://github.com/HackPack/hacktions/blob/master/EventEmitter.php">https://github.com/HackPack/hacktions/blob/master/EventEmitter.php</a>
+                            <a href="https://github.com/HackPack/Hacktions/blob/master/EventEmitter.php">https://github.com/HackPack/Hacktions/blob/master/EventEmitter.php</a>
                         </p>
 
                         <p>
@@ -785,7 +785,7 @@ class TestResult
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.collections.set.php">http://docs.hhvm.com/manual/en/hack.collections.set.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.collections.set.php">http://docs.hhvm.com/manual/en/Hack.collections.set.php</a>
                         </p>
                     </section>
 
@@ -811,7 +811,7 @@ class TestResult
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.collections.pair.php">http://docs.hhvm.com/manual/en/hack.collections.pair.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.collections.pair.php">http://docs.hhvm.com/manual/en/Hack.collections.pair.php</a>
                         </p>
                     </section>
 
@@ -828,7 +828,7 @@ class TestResult
                         <h3>A note on immutable collections</h3>
 
                         <p>
-                            Most hack collections have immutable variants - i.e <code>ImmVector</code>. Immutable variants function like their mutable counterparts with the exception that items cannot be added or removed.
+                            Most Hack collections have immutable variants - i.e <code>ImmVector</code>. Immutable variants function like their mutable counterparts with the exception that items cannot be added or removed.
                         </p>
                     </section>
 
@@ -841,7 +841,7 @@ class TestResult
 
                         <p>
                             <br>
-                            <a href="http://docs.hhvm.com/manual/en/hack.arrays.php">http://docs.hhvm.com/manual/en/hack.arrays.php</a>
+                            <a href="http://docs.hhvm.com/manual/en/Hack.arrays.php">http://docs.hhvm.com/manual/en/Hack.arrays.php</a>
                         </p>
                     </section>
 
@@ -858,7 +858,7 @@ class TestResult
 
                             <p>
                                 <br>
-                                <a href="http://docs.hhvm.com/manual/en/hack.shapes.php">http://docs.hhvm.com/manual/en/hack.shapes.php</a>
+                                <a href="http://docs.hhvm.com/manual/en/Hack.shapes.php">http://docs.hhvm.com/manual/en/Hack.shapes.php</a>
                             </p>
                         </section>
 
@@ -885,7 +885,7 @@ class TestResult
 
                             <p>
                                 <br>
-                                <a href="http://docs.hhvm.com/manual/en/hack.typealiasing.php">http://docs.hhvm.com/manual/en/hack.typealiasing.php</a>
+                                <a href="http://docs.hhvm.com/manual/en/Hack.typealiasing.php">http://docs.hhvm.com/manual/en/Hack.typealiasing.php</a>
                             </p>
                         </section>
 
@@ -966,7 +966,7 @@ function read(openfile $file): string {
                                 Asynchronous programming refers to a programming design pattern that allows several distinct tasks to cooperatively transfer control to one another on a given thread of execution. 
                             </blockquote>
 
-                            <p><br><a href="http://docs.hhvm.com/manual/en/hack.async.php">http://docs.hhvm.com/manual/en/hack.async.php</a></p>
+                            <p><br><a href="http://docs.hhvm.com/manual/en/Hack.async.php">http://docs.hhvm.com/manual/en/Hack.async.php</a></p>
                         </section>
 
                         <section>
@@ -993,7 +993,7 @@ function read(openfile $file): string {
                             <h3>Summary</h3>
 
                             <p>
-                                While not threading, this is still extremely useful, and it will only get better. See the official example on <a href="http://docs.hhvm.com/manual/en/hack.async.fetchingexample.php">coalesced fetching.</a>
+                                While not threading, this is still extremely useful, and it will only get better. See the official example on <a href="http://docs.hhvm.com/manual/en/Hack.async.fetchingexample.php">coalesced fetching.</a>
                             </p>
                         </section>
                     </section>
@@ -1009,7 +1009,7 @@ function read(openfile $file): string {
 
                             <p>
                                 <br>
-                                <a href="http://docs.hhvm.com/manual/en/hack.lambda.php">http://docs.hhvm.com/manual/en/hack.lambda.php</a>
+                                <a href="http://docs.hhvm.com/manual/en/Hack.lambda.php">http://docs.hhvm.com/manual/en/Hack.lambda.php</a>
                             </p>
                         </section>
 
@@ -1040,7 +1040,7 @@ $squared = array_map($x ==&gt; $x*$x, array(1,2,3));
                                 </code>
                             </pre>
 
-                            <p><br><a href="http://docs.hhvm.com/manual/en/hack.lambda.examples.php">http://docs.hhvm.com/manual/en/hack.lambda.examples.php</a></p>
+                            <p><br><a href="http://docs.hhvm.com/manual/en/Hack.lambda.examples.php">http://docs.hhvm.com/manual/en/Hack.lambda.examples.php</a></p>
                         </section>
 
                         <section>
@@ -1075,7 +1075,7 @@ $this-&gt;runner->&gt;on('testFailed', function(...) use ($ui) {
 
                             <p>
                                 <br>
-                                <a href="http://docs.hhvm.com/manual/en/hack.tuples.php">http://docs.hhvm.com/manual/en/hack.tuples.php</a>
+                                <a href="http://docs.hhvm.com/manual/en/Hack.tuples.php">http://docs.hhvm.com/manual/en/Hack.tuples.php</a>
                             </p>
                         </section>
 
@@ -1106,7 +1106,7 @@ class UsesTuples
                                 The Override attribute is the child class' counterpart to the parent class' abstract declaration. It is an optional annotation on a method, implemented with the <code>&lt;&lt;Override&gt;&gt;</code> user attribute. If the <code>&lt;&lt;Override&gt;&gt;</code> attribute is found on a method, and that method does not exist in the set of (non-abstract) methods inherited from parents, an error is thrown. 
                             </blockquote>
 
-                            <p><br><a href="http://docs.hhvm.com/manual/en/hack.overrideattribute.php">http://docs.hhvm.com/manual/en/hack.overrideattribute.php</a></p>
+                            <p><br><a href="http://docs.hhvm.com/manual/en/Hack.overrideattribute.php">http://docs.hhvm.com/manual/en/Hack.overrideattribute.php</a></p>
                         </section>
 
                         <section>
@@ -1135,13 +1135,13 @@ class TestResult
                         <p><br><a href="http://bit.ly/1piowdZ">http://bit.ly/1piowdZ</a></p>
                     </section>
 
-                    <!-- other hack features -->
+                    <!-- other Hack features -->
                     <section>
                         <section>
                             <h2>Other Hack Rules And Features</h2>
 
                             <p>
-                                Hack has some other <a href="http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.php">rules and features</a>, but here are some
+                                Hack has some other <a href="http://docs.hhvm.com/manual/en/Hack.otherrulesandfeatures.php">rules and features</a>, but here are some
                                 of the more relevant ones.
                             </p>
                         </section>
@@ -1153,7 +1153,7 @@ class TestResult
                                 Hack provides the capability to indicate that a function takes a variable number of arguments. This is done using ... (three dots).
                             </blockquote>
 
-                            <p><br><a href="http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.varargs.php">http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.varargs.php</a></p>
+                            <p><br><a href="http://docs.hhvm.com/manual/en/Hack.otherrulesandfeatures.varargs.php">http://docs.hhvm.com/manual/en/Hack.otherrulesandfeatures.varargs.php</a></p>
                         </section>
 
                         <section>
@@ -1171,7 +1171,7 @@ class TestResult
 
                             <p>
                                 <br>
-                                <a href="http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.callbacks.php">http://docs.hhvm.com/manual/en/hack.otherrulesandfeatures.callbacks.php</a>
+                                <a href="http://docs.hhvm.com/manual/en/Hack.otherrulesandfeatures.callbacks.php">http://docs.hhvm.com/manual/en/Hack.otherrulesandfeatures.callbacks.php</a>
                             </p>
                         </section>
 
@@ -1179,13 +1179,13 @@ class TestResult
                             <h3>fun and family</h3>
 
                             <p>
-                                There are a few variants of <a href="http://docs.hhvm.com/manual/en/function.hack.fun.php">fun</a>:
+                                There are a few variants of <a href="http://docs.hhvm.com/manual/en/function.Hack.fun.php">fun</a>:
                             </p>
 
                             <ul>
-                                <li>function <a href="http://docs.hhvm.com/manual/en/function.hack.class_meth.php">class_meth()</a> - Creates a callable to call a static method</li>
-                                <li>function <a href="http://docs.hhvm.com/manual/en/function.hack.inst_meth.php">inst_meth()</a> - Creates a callable to call an instance method on a specific object</li>
-                                <li>function <a href="http://docs.hhvm.com/manual/en/function.hack.meth_caller.php">meth_caller()</a> - Creates a callable to call an instance method on any object</li>
+                                <li>function <a href="http://docs.hhvm.com/manual/en/function.Hack.class_meth.php">class_meth()</a> - Creates a callable to call a static method</li>
+                                <li>function <a href="http://docs.hhvm.com/manual/en/function.Hack.inst_meth.php">inst_meth()</a> - Creates a callable to call an instance method on a specific object</li>
+                                <li>function <a href="http://docs.hhvm.com/manual/en/function.Hack.meth_caller.php">meth_caller()</a> - Creates a callable to call an instance method on any object</li>
                             </ul>
                         </section>
 
@@ -1204,7 +1204,40 @@ $update = inst_meth($observer, 'update');
                                 <br>
                                 <a href="https://github.com/HackPack/HackUnit/blob/master/UI/Console.php">https://github.com/HackPack/HackUnit/blob/master/UI/Console.php</a>
                                 <br>
-                                <a href="https://github.com/HackPack/hacktions/blob/master/Subject.php">https://github.com/HackPack/hacktions/blob/master/Subject.php</a>
+                                <a href="https://github.com/HackPack/Hacktions/blob/master/Subject.php">https://github.com/HackPack/Hacktions/blob/master/Subject.php</a>
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3>invariant()</h3>
+
+                            <blockquote>
+                                There are times when it is desirable to have an object be type-checked as a more specific type than it is currently declared. For example, an interface needs to be type-checked as one of its implementing classes. invariant() is used to help the Hack type-checker make this more specific type determination.
+                            </blockquote>
+
+                            <p><br><a href="http://docs.hhvm.com/manual/en/Hack.otherrulesandfeatures.invariant.php">http://docs.hhvm.com/manual/en/Hack.otherrulesandfeatures.invariant.php</a></p>
+                        </section>
+
+                        <section>
+                            <h3>... an example</h3>
+
+                            <pre>
+                                <code class="php" contenteditable data-trim>
+public function notifyObservers(...): void
+{
+    foreach ($this->observers as $observer) {
+        invariant($observer instanceof Observer, 'Subjects can only notify Observers');
+        $update = inst_meth($observer, 'update');
+        $args = array_merge([$this], func_get_args());
+        call_user_func_array($update, $args);
+    }
+}
+                                </code>
+                            </pre>
+
+                            <p>
+                                <br>
+                                <a href="https://github.com/HackPack/Hacktions/blob/master/Subject.php">https://github.com/HackPack/Hacktions/blob/master/Subject.php</a>
                             </p>
                         </section>
                     </section>
