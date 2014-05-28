@@ -116,6 +116,24 @@
                         <img  class="no-border" src="img/use-references-output.png" alt="output of reference use" />
                     </section>
 
+                    <section>
+                        <h3>Using hh_client</h3>
+
+                        <p>
+                            The type checker is invoked by using the <code>hh_client</code> executable that installs with hack. This executable is currently only available on *nix platforms.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... be sure to search the right path</h3>
+
+                        <p>
+                            <code>hh_client</code> will search for types based on the location of a <code>.hhconfig</code> file. It is an empty file. Be sure to include this in the root of your projects.
+                        </p>
+
+                        <img src="img/hhconfig.png" alt="hack project directory structure" />
+                    </section>
+
                 </section>
                 
                 <!-- Type annotation -->
@@ -388,6 +406,199 @@ class TestCase
 
                         <img src="img/hhi-example.png" alt="example of hhi interface" />
                     </section>
+
+                    <section>
+                        <h3>Partial mode</h3>
+
+                        <blockquote>
+                            Partial mode is the default of Hack. In partial mode, the type checker checks all types other than that encompassed by an // UNSAFE comment. Partial mode also allows for the partially typing of a class, method or function (e.g., only type a subset of its arguments). And, also unlike strict mode, partial mode allows engineers to call code that has not yet been "Hack-ified" (in other words, they can call into untyped code).
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.modes.partial.php">http://docs.hhvm.com/manual/en/hack.modes.partial.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... the safe bet for program entry</h3>
+
+                        <p>
+                            Since strict mode does not allow top level code, partial mode is the method for program entry.
+                        </p>
+
+                        <p>
+                            <br>
+                            <a href="https://github.com/HackPack/HackUnit/blob/master/bin/hackunit">https://github.com/HackPack/HackUnit/blob/master/bin/hackunit</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Decl mode</h3>
+
+                        <blockquote>
+                            Decl mode is used to allow hack code written in strict mode to call into legacy code, without having to fix the issues that would be pointed out by partial mode. The type checker will "absorb" the signatures of the code, but will not type check the code. Decl is mainly used when annotating old, existing APIs (i.e., when the code does note meet Hack's stricter subset of PHP). 
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.modes.decl.php">http://docs.hhvm.com/manual/en/hack.modes.decl.php</a>
+                        </p>
+
+                    </section>
+
+                    <section>
+                        <h3>UNSAFE</h3>
+
+                        <blockquote>
+                            // UNSAFE disables the type checker from the point of unsafe declaration until the end of the current block of code (where the end of the current block generally refers to the associated ending brace (}) of which the // UNSAFE is declared).
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="https://github.com/HackPack/HackUnit/blob/master/Runner/Loading/StandardLoader.php#L98">https://github.com/HackPack/HackUnit/blob/master/Runner/Loading/StandardLoader.php#L98</a>
+                        </p>
+                    </section>
+
+                </section>
+
+                <!-- generics -->
+                <section>
+
+                    <section>
+                        <h2>Generics</h2>
+
+                        <blockquote>
+                            Hack introduces generics to PHP (in the same vein as statically type languages such as C# and Java). Generics allow classes and methods to be parameterized (i.e., a type associated when a class is instantiated or a method is called). 
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            The benefit of course being: generics can be statically checked.
+                        </p>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.generics.php">http://docs.hhvm.com/manual/en/hack.generics.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Generic interfaces are great for design</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+&lt;?hh //strict
+namespace HackPack\Hacktions;
+
+trait EventEmitter
+{
+    protected Map&lt;string, Vector&lt;(function(...): void)&gt;&gt; $listeners = Map {};
+}
+                            </code>
+                        </pre>
+
+                        <p>
+                            The type checker can easily catch these sort of type constraints, and our program design is better for them.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... the dream is better than reality</h3>
+
+                        <p>
+                            While hack generics are useful type annotations, they are nowhere near as useful as generics in Java/C#.
+                        </p>
+
+                        <p>
+                            This mainly stems from hack's preference for inference and the fact that a type is not a concrete thing in hack.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Inference</h3>
+
+                        <p>
+                            The preference for inference seems like a blow to readability. The following results in a type error:
+                        </p>
+
+                        <pre>
+                            <code data-trim content-editable class="php">
+$fun = () ==> { $fn = $this->callable; $fn(); }
+$this->expectCallable($fun)->toThrow&lt;ExpectationException&gt;();
+
+//Tests/Core/CallableExpectationTest.php|54 col 70 error|  This operator is not associative, add parentheses
+                            </code>
+                        </pre>
+
+                        <p>
+                            <br>
+                            <a href="http://bit.ly/1mBUm25">http://bit.ly/1mBUm25</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... this is ok</h3>
+
+                        <pre>
+                            <code data-trim contenteditable class="php">
+$fun = () ==> { $fn = $this->callable; $fn();};
+$this->expectCallable($fun)->toThrow('\HackPack\HackUnit\Core\ExpectationException');
+                            </code>
+                        </pre>
+
+                        <p>
+                            This snippet also demonstrates we haven't left the "magic string" pattern of PHP. Types are not concrete things in hack - we still have to check types against strings.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Generics don't stack</h3>
+
+                        <p>
+                            Generics are not as useful in hack because they don't stack. What I mean by stack is explained by the following from the docs:
+                        </p>
+
+                        <blockquote>                            
+                            A generic method must not collide with any existing, non-generic method name (i.e, public function swap and public function swap<T>).
+                        </blockquote>
+
+                        <p>
+                            <br>
+                            <a href="http://docs.hhvm.com/manual/en/hack.generics.method.php">http://docs.hhvm.com/manual/en/hack.generics.method.php</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>... even if they should</h3>
+
+                        <pre>
+                            <code class="php" data-trim contenteditable>
+&lt;?hh //strict                                
+class Cook
+{
+    use Subject&lt;Waiter&gt;;
+    use Subject&lt;Busboy&gt;;
+}
+
+//throws type errors
+                            </code>
+                        </pre>
+
+                        <p>
+                            <br>
+                            <a href="https://github.com/HackPack/hacktions">https://github.com/HackPack/hacktions</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Summary</h3>
+
+                        <p>
+                            Generics are really useful design tools. Their presence in hack is a welcome addition that is not present in vanilla PHP. However, they are not as useful as they are in other languages.
+                        </p>
+                    </section>
+
                 </section>
 
             </div>
